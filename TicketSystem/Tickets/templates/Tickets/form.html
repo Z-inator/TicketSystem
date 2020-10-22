@@ -1,0 +1,23 @@
+<!doctype html>
+
+{% load static %}
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    <title>Ticketing System</title>
+    <meta name="description" content="Basic ticketing system.">
+    <meta name="author" content="Zachary">
+
+    <link rel="stylesheet" href="{% static 'Tickets/style.css' %}">
+
+    </head>
+    <body>
+        <h1>Form</h1>
+        <form action="/form" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
