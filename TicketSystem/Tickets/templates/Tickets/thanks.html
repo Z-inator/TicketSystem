@@ -1,20 +1,25 @@
-<!doctype html>
-
-{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="utf-8">
-
-    <title>Ticketing System</title>
-    <meta name="description" content="Basic ticketing system.">
-    <meta name="author" content="Zachary">
-
-    <link rel="stylesheet" href="{% static 'Tickets/style.css' %}">
-
-    </head>
-
-    <body>
-        <p>Thanks</p>
-        
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Submission successful</title> -->
+</head>
+<body>
+<h2>All Ticket Details</h2>
+<table>
+    {% for item in tickets %}
+    <tr>
+        <td><b>Title:</b>{{ item.title }}</td>
+        <td><b>Name:</b> {{ item.name }}</td>
+        <td><b>Email:</b> {{ item.contact }}</td>
+        <td><b>Date:</b> {{ item.submissionDate }}</td>
+        <td><b>Description:</b> {{ item.description }}</td>
+        <td><b>High Priority:</b> {{ item.highPriority }}</td>
+    </tr>
+    <tr>
+    <td colspan="2" class="divider"><hr/></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
 </html>
