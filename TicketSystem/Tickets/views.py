@@ -1,8 +1,8 @@
-from django.shortcuts import render
 from django.db import models
+from django.forms import modelformset_factory
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.forms import modelformset_factory
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 # Create your views here.
@@ -19,9 +19,10 @@ def form(request):
         form = TicketForm(request.POST)
         if form.is_valid():
             form.save()
-            tickets = Ticket.objects.all()
+            # tickets = Ticket.objects.all()
             # return HttpResponseRedirect(reverse('Tickets:thanks'))
-            return render(request, 'Tickets/thanks.html', {'tickets': tickets})
+            # return render(request, 'Tickets/thanks.html', {'tickets': tickets})
+            return redirect('../thanks/')
 
     else:
         form = TicketForm
@@ -30,9 +31,10 @@ def form(request):
     # return render(request, 'Tickets/form.html', {'form': form,})
 
 
-# def thanks(request):
-#     tickets = Ticket.objects.all()
-#     return render(request, 'Tickets/thanks.html', )
+def thanks(request):
+    tickets = Ticket.objects.all()
+    # tickets = get_object_or_404(Ticket.objects.all())
+    return render(request, 'Tickets/thanks.html', {'tickets':tickets})
 
 # def processForm(request):
 #     if request.method == 'POST':
