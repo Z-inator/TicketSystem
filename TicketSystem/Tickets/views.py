@@ -18,11 +18,15 @@ def form(request):
     if request.method == 'POST':
         form = TicketForm(request.POST)
         if form.is_valid():
-            form.save()
+            instance = form.save()
+            instance_id = instance.id
+            request.session['instance_id'] = instance_id
+            return redirect('../thanks/')
+            # ../thanks/
+
             # tickets = Ticket.objects.all()
             # return HttpResponseRedirect(reverse('Tickets:thanks'))
-            # return render(request, 'Tickets/thanks.html', {'tickets': tickets})
-            return redirect('../thanks/')
+            # return render(request, 'Tickets/thanks.html', {'instance': instance})
 
     else:
         form = TicketForm
@@ -31,9 +35,12 @@ def form(request):
     # return render(request, 'Tickets/form.html', {'form': form,})
 
 
-def thanks(request):
-    tickets = Ticket.objects.all()
-    # tickets = get_object_or_404(Ticket.objects.all())
+def thanks(request, instance_id):
+    # tickets = Ticket.objects.all()
+    # ticket_id = request.GET.get('instance')
+    instance_id = request.session.get('instance_id')
+    tickets = get_object_or_404(Ticket, pk=instance_id)
+    
     return render(request, 'Tickets/thanks.html', {'tickets':tickets})
 
 # def processForm(request):

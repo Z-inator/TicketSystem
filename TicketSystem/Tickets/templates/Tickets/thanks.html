@@ -7,19 +7,19 @@
 <body>
 <h2>All Ticket Details</h2>
 <table>
-    {% for item in tickets %}
+    
     <tr>
-        <td><b>Title:</b>{{ item.title }}</td>
-        <td><b>Name:</b> {{ item.name }}</td>
-        <td><b>Email:</b> {{ item.contact }}</td>
-        <td><b>Date:</b> {{ item.submissionDate }}</td>
-        <td><b>Description:</b> {{ item.description }}</td>
-        <td><b>High Priority:</b> {{ item.highPriority }}</td>
+        <td><b>Title:</b>{{ tickets.title }}</td>
+        <td><b>Name:</b> {{ tickets.name }}</td>
+        <td><b>Email:</b> {{ tickets.contact }}</td>
+        <td><b>Date:</b> {{ tickets.submissionDate }}</td>
+        <td><b>Description:</b> {{ tickets.description }}</td>
+        <td><b>High Priority:</b> {{ tickets.highPriority }}</td>
     </tr>
     <tr>
     <td colspan="2" class="divider"><hr/></td>
     </tr>
-    {% endfor %}
+    
 </table>
 </body>
 </html>
