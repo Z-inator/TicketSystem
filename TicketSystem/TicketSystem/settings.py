@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'Tickets.apps.TicketsConfig',
+    'Tickets',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

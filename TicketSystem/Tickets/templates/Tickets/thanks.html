@@ -1,25 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <title>Submission successful</title> -->
-</head>
-<body>
+{% extends 'Tickets/index.html' %}
+
+{% block content %}
+
+    <div class="container" style="padding: 5rem 2rem 1rem 2rem;">
+        <h3>Thank you for your ticket submission.</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Priority</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">{{ tickets.title }}</th>
+                <td>{{ tickets.firstName }}</td>
+                <td>{{ tickets.lastName }}</td>
+                <td>{{ tickets.contact }}</td>
+                <td>{{ tickets.submissionDate }}</td>
+                <td>{{ tickets.description }}</td>
+                <td>{{ tickets.highPriority }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+
 <h2>All Ticket Details</h2>
 <table>
-    
     <tr>
-        <td><b>Title:</b>{{ tickets.title }}</td>
-        <td><b>Name:</b> {{ tickets.name }}</td>
-        <td><b>Email:</b> {{ tickets.contact }}</td>
-        <td><b>Date:</b> {{ tickets.submissionDate }}</td>
-        <td><b>Description:</b> {{ tickets.description }}</td>
-        <td><b>High Priority:</b> {{ tickets.highPriority }}</td>
+        <td>{{ tickets.title }}</td>
+        <td>{{ tickets.firstName }} {{ tickets.lastName }}</td>
+        <td>{{ tickets.contact }}</td>
+        <td>{{ tickets.submissionDate }}</td>
+        <td>{{ tickets.description }}</td>
+        <td>{{ tickets.highPriority }}</td>
     </tr>
     <tr>
     <td colspan="2" class="divider"><hr/></td>
     </tr>
-    
 </table>
-</body>
-</html>

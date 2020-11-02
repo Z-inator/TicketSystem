@@ -7,8 +7,7 @@ class TicketAdmin(admin.ModelAdmin):
         (None,                  {'fields': ['title']}),
         ('Submission Date',   {'fields': ['submissionDate'], 'classes': ['collapse']}),
     ]
-    # inlines = [ChoiceInLine]
-    list_display = ('title', 'submissionDate', 'name', 'contact', 'highPriority')
+    list_display = ('title', 'submissionDate', 'firstName', 'lastName', 'contact', 'highPriority')
     list_filter = ['submissionDate']
     search_fields = ['contact']
 
