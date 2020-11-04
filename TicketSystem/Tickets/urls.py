@@ -5,5 +5,5 @@ app_name = 'Tickets'
 urlpatterns = [
     path('', views.index, name='index'),
     path('form/', views.form, name='form'),
-    path('submission/<int:pk>/', views.submit, name='submission'),
+    path('submission/', views.submission, name='submission'),
 ]

@@ -1,4 +1,4 @@
-{% extends 'Tickets/index.html' %}
+{% extends 'Tickets/base.html' %}
 
 {% block content %}
     <div class="container" style="padding: 5rem 2rem 1rem 2rem;">
@@ -6,7 +6,7 @@
     </div>
     <div class="container">
         <div class="form-group">
-            <form method="POST">
+            <form method="POST" action="{% url 'Tickets:submission' pk %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Submit" class="btn btn-primary btn-md" />

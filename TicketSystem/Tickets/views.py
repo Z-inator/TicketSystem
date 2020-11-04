@@ -12,7 +12,7 @@ from .models import Ticket, TicketForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'Tickets/index.html', )
+    return render(request, 'Tickets/index.html')
 
 def form(request):
     if request.method == 'POST':
@@ -22,7 +22,7 @@ def form(request):
             # instance_id = instance.id
             # request.session['instance_id'] = instance_id
             # return redirect('../thanks/')
-            return redirect('submit', pk=instance.pk)
+            return redirect('../submission/', pk=instance.pk)
             # ../thanks/
 
             # tickets = Ticket.objects.all()
@@ -36,7 +36,7 @@ def form(request):
     # return render(request, 'Tickets/form.html', {'form': form,})
 
 
-def submit(request, pk):
+def submission(request, pk):
     # tickets = Ticket.objects.all()
     # ticket_id = request.GET.get('instance')
     # instance_id = request.session.get('instance_id')
