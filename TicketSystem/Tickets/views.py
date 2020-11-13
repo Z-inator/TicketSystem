@@ -12,16 +12,17 @@ from .models import Ticket, TicketForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'Tickets/index.html', )
+    return render(request, 'Tickets/index.html')
 
 def form(request):
     if request.method == 'POST':
         form = TicketForm(request.POST)
         if form.is_valid():
             instance = form.save()
-            instance_id = instance.id
-            request.session['instance_id'] = instance_id
-            return redirect('../thanks/')
+            # instance_id = instance.id
+            # request.session['instance_id'] = instance_id
+            # return redirect('../thanks/')
+            return redirect('../submission/', pk=instance.pk)
             # ../thanks/
 
             # tickets = Ticket.objects.all()
@@ -29,19 +30,20 @@ def form(request):
             # return render(request, 'Tickets/thanks.html', {'instance': instance})
 
     else:
-        form = TicketForm
-        return render(request, 'Tickets/form.html', {'form': form,})
+        form = TicketForm()
+    return render(request, 'Tickets/form.html', {'form': form})
 
     # return render(request, 'Tickets/form.html', {'form': form,})
 
 
-def thanks(request, instance_id):
+def submission(request, pk):
     # tickets = Ticket.objects.all()
     # ticket_id = request.GET.get('instance')
-    instance_id = request.session.get('instance_id')
-    tickets = get_object_or_404(Ticket, pk=instance_id)
+    # instance_id = request.session.get('instance_id')
+    # instance_id = instance.id
+    tickets = get_object_or_404(Ticket, pk=pk)
     
-    return render(request, 'Tickets/thanks.html', {'tickets':tickets})
+    return render(request, 'Tickets/submission.html', {'tickets':tickets})
 
 # def processForm(request):
 #     if request.method == 'POST':

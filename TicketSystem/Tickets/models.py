@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
 from datetime import datetime
+from django.core import validators
 
 
 # Create your models here.
@@ -21,6 +22,10 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = '__all__'
         exclude = ['submissionDate']
+        botcatcher = forms.CharField(
+            required=False, 
+            widget=forms.HiddenInput, 
+            validators=[validators.MaxLengthValidator(0)])
 
         widgets = {
             'title': forms.TextInput(
