@@ -1,6 +1,6 @@
+from datetime import datetime
 from django.db import models
 from django import forms
-from datetime import datetime
 from django.core import validators
 
 
