@@ -1,3 +1,6 @@
+# Workspace settings and Environments #
 .TicketSystemVenv
+.vscode
 
-__pycache__
+# pycache
+__pycache__/
