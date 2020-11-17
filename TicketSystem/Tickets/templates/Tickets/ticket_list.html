@@ -1,0 +1,23 @@
+{% extends "Tickets/ticket_base.html" %}
+
+{% block preticket %}
+    <div class="col-md-4">
+        <div class="content"></div>
+            <h3>Welcome to the Tickets Page! <br>Select a ticket to view.</h3>
+        </div>
+        <a href="{% url 'Tickets:new' %}" class="btn btn-warning" role="button"><span class="fa fa-plus"></span> Create New Ticket</a>
+    </div>
+{% endblock %}
+
+{% block ticket_content %}
+<div class="col-md-8">
+	<div class="list-group">
+		{% for ticket in ticket_list %}
+		<a href="{% url 'Tickets:single' pk=ticket.pk %}" class="list-group-item list-group-item-action flex-column align-items-start"></a>
+			<h3 class="mb-1">{{ ticket.title }}</h3>
+            <p class="mb-1">{{ ticket.description }}</p>
+            <p class="mb-1">{{ ticket.submissionDate }}</p>		
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

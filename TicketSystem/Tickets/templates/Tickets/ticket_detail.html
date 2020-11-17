@@ -1,0 +1,39 @@
+{% extends "Tickets/ticket_base.html" %}
+
+{% block preticket %}
+<div class="container">
+  <h1>{{ticket_detail.title}}</h1>
+</div>
+{% endblock %}
+
+{% block ticket_content %}
+    <div class="content">
+        <table class="table">
+            <thead>
+                <tr><th scope="row">First Name</th></tr>
+                <tr><th scope="row">Last Name</th></tr>
+                <tr><th scope="row">Email</th></tr>
+                <tr><th scope="row">Date</th></tr>
+                <tr><th scope="row">Description</th></tr>
+                <tr><th scope="row">Priority</th></tr>
+                </tr>
+            </thead>
+            <tbody>
+                    <td>{{ ticket_detail.firstName }}</td>
+                    <td>{{ ticket_detail.lastName }}</td>
+                    <td>{{ ticket_detail.contact }}</td>
+                    <td>{{ ticket_detail.submissionDate }}</td>
+                    <td>{{ ticket_detail.description }}</td>
+                    <td>{{ ticket_detail.highPriority }}</td>
+            </tbody>
+        </table>
+        <table class="table">
+            {% for name, value in ticket_detail.get_fields %}
+                <tr>
+                    <th>{{ name }}</th>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

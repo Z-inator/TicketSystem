@@ -1,6 +1,6 @@
 from django.db import models
-from django import forms
 from datetime import datetime
+from django.urls import reverse
 
 
 # Create your models here.
@@ -16,49 +16,8 @@ class Ticket(models.Model):
     def __str__(self):
         return self.title
 
-class TicketForm(forms.ModelForm):
-    class Meta:
-        model = Ticket
-        fields = '__all__'
-        exclude = ['submissionDate']
-
-        widgets = {
-            'title': forms.TextInput(
-                attrs={
-                    'class': 'form-control', 
-                    'placeholder': 'Ticket Title'
-                }
-            ),
-            'firstName': forms.TextInput(
-                attrs={
-                    'class': 'form-control', 
-                    'placeholder': 'John'
-                }
-            ),
-            'lastName': forms.TextInput(
-                attrs={
-                    'class': 'form-control', 
-                    'placeholder': 'Smith'
-                }
-            ),
-            'contact': forms.EmailInput(
-                attrs={
-                    'class': 'form-control', 
-                    'placeholder': 'email@email.com'
-                }
-            ),
-            'description': forms.Textarea(
-                attrs={
-                    'class': 'form-control', 
-                    'placeholder': 'Please describe your issue in detail...'
-                }
-            ),
-            'highPriority': forms.CheckboxInput(
-                attrs={
-                    'class': 'form-control',
-                    'class': 'form-check',
-                    'class': 'form-text text-muted'
-                }
-            ),
-        }
-
+    def get_absolute_url(self):
+        return reverse ('Tickets:single', kwargs={'pk':self.pk})
+    
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in Ticket._meta.fields]
