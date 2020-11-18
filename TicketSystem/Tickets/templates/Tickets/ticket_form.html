@@ -1,9 +1,9 @@
 {% extends 'Tickets/ticket_base.html' %}
 {% load bootstrap4 %}
 
-{% block content %}
+{% block ticket_content %}
     <div class="container">
-        <h4>Create A New Ticket</h4>
+        <h3>Create A New Ticket</h3>
         <form method="POST" action="{% url 'Tickets:new' %}">
             {% csrf_token %}
             {% bootstrap_form form %}
@@ -12,5 +12,4 @@
             {% endbuttons %}
         </form>
     </div>
-    
 {% endblock %}

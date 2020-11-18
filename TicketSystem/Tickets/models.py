@@ -20,4 +20,28 @@ class Ticket(models.Model):
         return reverse ('Tickets:single', kwargs={'pk':self.pk})
     
     def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in Ticket._meta.fields]
+        """Returns a list of all field names on the instance."""
+        fields = []
+        for field in self._meta.fields:
+            field_name = field.name        
+            # resolve picklists/choices, with get_xyz_display() function
+            get_choice = 'get_'+field_name+'_display'
+            if hasattr(self, get_choice):
+                value = getattr(self, get_choice)()
+            else:
+                try:
+                    value = getattr(self, field_name)
+                except AttributeError:
+                    value = None
+
+            # only display fields with values and skip some fields entirely
+            if field.editable and value and field_name not in ('id') :
+
+                fields.append(
+                {
+                    'label':field.verbose_name, 
+                    'name':field.name, 
+                    'value':value,
+                }
+                )
+        return fields

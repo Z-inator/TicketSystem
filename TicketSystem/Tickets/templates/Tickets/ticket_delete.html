@@ -1,0 +1,8 @@
+<form method="POST" action="{% url 'Tickets:delete' pk=ticket_detail.pk %}" id="delete" class="ml-auto">
+    {% csrf_token %}
+    <button type="submit" form="delete" class="mdc-fab mdc-fab--extended">
+        <div class="mdc-fab__ripple"></div>
+        <span class="material-icons mdc-fab__icon">delete_outline</span>
+        <span class="mdc-fab__label">Delete</span>
+    </button>
+</form>
