@@ -6,9 +6,11 @@
         <div class="content">
             <h3>Ticket Details</h3>
         </div>
-        {% include 'Tickets/ticket_update.html' %}
-
-        
+        <a href="{% url 'Tickets:update' pk=ticket_detail.pk %}" class="mdc-fab mdc-fab--extended" role="button">
+            <div class="mdc-fab__ripple"></div>
+            <span class="material-icons mdc-fab__icon">edit</span>
+            <span class="mdc-fab__label">Edit</span>
+        </a>
     </div>
 {% endblock %}
 

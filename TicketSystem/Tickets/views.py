@@ -25,17 +25,15 @@ class CreateTicket(generic.CreateView):
     # Use this for basic forms: Django automatically created model form from model
     model = models.Ticket
     fields = ('title','firstName','lastName','contact','description','highPriority')
-    template_name = 'ticket_form.html'
 
 class TicketList(generic.ListView):
     model = models.Ticket
-    template_name = 'ticket_list.html'
     context_object_name = 'ticket_list'
 
 class TicketDetail(generic.DetailView):
     model = models.Ticket
-    template_name = 'ticket_detail.html'
     context_object_name = 'ticket_detail'
+    template_name = 'Tickets/ticket_detail.html'
 
     # def get(self, *args, **kwargs):
     #     fields = forms.TicketForm(data=model_to_dict(models.Tickets.objects.get(pk=self.kwargs.get('pk'))))
@@ -44,9 +42,11 @@ class TicketDetail(generic.DetailView):
 class TicketUpdate(generic.UpdateView):
     model = models.Ticket
     fields = ['title','firstName','lastName','contact','description','highPriority']
+    template_name = 'Tickets/ticket_update.html'
+    context_object_name = 'ticket_detail_update'
 
     def get_success_url(self):
-        return reverse_lazy('Tickets:single')
+        return reverse_lazy('Tickets:all')
 
 class TicketDelete(generic.DeleteView):
     model = models.Ticket

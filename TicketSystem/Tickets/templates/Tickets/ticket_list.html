@@ -1,7 +1,6 @@
 {% extends "Tickets/ticket_base.html" %}
 
 {% block preticket %}
-    
     <div class="d-flex w-100 justify-content-between">
         <div class="content">
             <h3>Welcome to the Tickets Page!</h3>
@@ -13,11 +12,9 @@
             <span class="mdc-fab__label">New Ticket</span>
         </a>
     </div>
-    
 {% endblock %}
 
 {% block ticket_content %}
-    
         <div class="list-group my-4">
             {% for ticket in ticket_list %}
             <a href="{% url 'Tickets:single' pk=ticket.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -29,5 +26,4 @@
             </a>
             {% endfor %}
         </div>
-    
 {% endblock %}
