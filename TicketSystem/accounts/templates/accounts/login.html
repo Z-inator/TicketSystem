@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div class="container">
+        <h3>Login</h3>
+        <form method="POST" id="login">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" form="login" class="mdc-fab mdc-fab--extended">
+                <div class="mdc-fab__ripple"></div>
+                <span class="material-icons mdc-fab__icon">input</span>
+                <span class="mdc-fab__label">Log In</span>
+            </button>
+        </form>
+    </div>
+{% endblock %}
