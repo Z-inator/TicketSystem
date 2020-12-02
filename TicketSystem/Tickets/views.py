@@ -42,7 +42,7 @@ class TicketList(generic.ListView):
 
     def get_queryset(self):
         try:
-            self.ticket_user = User.objects.prefetch_related("posts").get(
+            self.ticket_user = User.objects.prefetch_related("tickets").get(
                 username__iexact=self.kwargs.get("username")
             )
         except User.DoesNotExist:
@@ -60,9 +60,12 @@ class TicketDetail(generic.DetailView):
     context_object_name = 'ticket_detail'
     template_name = 'Tickets/ticket_detail.html'
 
+    def get_queryset(self):
+        self.
+
 class TicketUpdate(generic.UpdateView):
     model = models.Ticket
-    fields = ['title','firstName','lastName','contact','description','highPriority']
+    fields = ['title','description','highPriority']
     template_name = 'Tickets/ticket_update.html'
     context_object_name = 'ticket_detail_update'
 

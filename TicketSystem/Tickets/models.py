@@ -21,7 +21,6 @@ class Ticket(models.Model):
         return reverse(
             'Tickets:single', 
             kwargs={
-                'username': self.user.username,
                 'pk':self.pk
             }
         )
