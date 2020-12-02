@@ -6,7 +6,7 @@
             <h3>@{{ ticket_user.username }} Tickets</h3>
             <h5 class="text-muted">Select a ticket to view.</h5>
         </div>
-        <a href="{% url 'Tickets:new' %}" class="mdc-fab mdc-fab--extended" role="button">
+        <a href="{% url 'Tickets:create' %}" class="mdc-fab mdc-fab--extended" role="button">
             <div class="mdc-fab__ripple"></div>
             <span class="material-icons mdc-fab__icon">add_circle</span>
             <span class="mdc-fab__label">New Ticket</span>
@@ -17,13 +17,13 @@
 {% block ticket_content %}
         <div class="list-group my-4">
             {% for ticket in ticket_list %}
-            <a href="{% url 'Tickets:single' pk=ticket.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h3 class="mb-1">{{ ticket.title }}</h3>
-                    <small class="text-muted">{{ ticket.submissionDate }}</small>
-                </div>
-                <small class="text-muted">{{ ticket.description }}</small>
-            </a>
+                <a href="{% url 'Tickets:single' pk=ticket.pk %}" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1">{{ ticket.title }}</h3>
+                        <small class="text-muted">{{ ticket.submissionDate }}</small>
+                    </div>
+                    <small class="text-muted">{{ ticket.description }}</small>
+                </a>
             {% endfor %}
         </div>
 {% endblock %}
