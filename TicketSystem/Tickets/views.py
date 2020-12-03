@@ -36,7 +36,18 @@ class TicketList(LoginRequiredMixin, generic.ListView):
     template_name = "Tickets/ticket_list.html"
     context_object_name = "ticket_list"
 
+    def get_queryset(self):
+        try:
+            user_tickets = Ticket.objects.filter(self.user="username")
+        except User.DoesNotExist:
+            raise Http404
+        else:
+            return user_tickets
 
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context["Ticket_user"] = user_tickets
+            return context
 
     # def get_queryset(self):
     #     try:

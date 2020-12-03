@@ -7,6 +7,7 @@ User = get_user_model()
 
 
 # Create your models here.
+
 class Ticket(models.Model):
     user = models.ForeignKey(User, related_name="tickets", on_delete=models.CASCADE)
     title = models.CharField("Title", max_length=100)
