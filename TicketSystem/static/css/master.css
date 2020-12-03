@@ -1,11 +1,10 @@
 .footer {
-    background-color: red;
+    background-color: whitesmoke;
 }
 #ticket-list {
     /* max-height: 2em;
     overflow: hidden;
     position: relative; */
-    background-color: black;
 }
 #ticket-description {
     /* position: absolute;
@@ -14,8 +13,4 @@
     background: -o-linear-gradient(transparent, white);
     background: -moz-linear-gradient(transparent, white);
     background: linear-gradient(transparent, white); */
-    background-color: black;
-}
-.test {
-    background-color: black;
 }
