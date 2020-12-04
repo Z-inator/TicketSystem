@@ -48,7 +48,7 @@ class Ticket(models.Model):
                     value = None
 
             # only display fields with values and skip some fields entirely
-            if field.editable and value and field_name not in ("id") :
+            if value and field_name not in ("id") :
 
                 fields.append(
                 {

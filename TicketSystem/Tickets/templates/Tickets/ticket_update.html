@@ -4,7 +4,7 @@
 {% block ticket_content %}
     <div class="container">
         <h3>Edit Ticket: {{ticket_detail_update.title}}</h3>
-        <form method="POST" action="{% url 'Tickets:update' pk=ticket_detail_update.pk %}" id="update" class="my-4">
+        <form method="POST" action="{% url 'Tickets:update' pk=ticket.pk %}" id="update" class="my-4">
           {% csrf_token %}
           {% bootstrap_form form %}
         </form>

@@ -34,20 +34,28 @@ class CreateTicket(LoginRequiredMixin, generic.CreateView):
 class TicketList(LoginRequiredMixin, generic.ListView):
     model = models.Ticket
     template_name = "Tickets/ticket_list.html"
-    context_object_name = "ticket_list"
 
     def get_queryset(self):
-        try:
-            user_tickets = Ticket.objects.filter(self.user="username")
-        except User.DoesNotExist:
-            raise Http404
-        else:
-            return user_tickets
+        user_tickets = User.objects.filter(username__iexact=self.user.username)
+        return user_tickets
 
-        def get_context_data(self, **kwargs):
-            context = super().get_context_data(**kwargs)
-            context["Ticket_user"] = user_tickets
-            return context
+    def get_context_data(self):
+        context = super().get_context_data(**kwargs)
+        context["Ticket_user"] = user_tickets
+        return context
+
+    # def get_queryset(self):
+    #     try:
+    #         user_tickets = Ticket.objects.filter(self.user="username")
+    #     except User.DoesNotExist:
+    #         raise Http404
+    #     else:
+    #         return user_tickets
+
+    #     def get_context_data(self, **kwargs):
+    #         context = super().get_context_data(**kwargs)
+    #         context["Ticket_user"] = user_tickets
+    #         return context
 
     # def get_queryset(self):
     #     try:
@@ -66,14 +74,12 @@ class TicketList(LoginRequiredMixin, generic.ListView):
 
 class TicketDetail(LoginRequiredMixin, generic.DetailView):
     model = models.Ticket
-    context_object_name = "ticket_detail"
     template_name = "Tickets/ticket_detail.html"
 
 class TicketUpdate(LoginRequiredMixin, generic.UpdateView):
     model = models.Ticket
     fields = ["title","description","highPriority"]
     template_name = "Tickets/ticket_update.html"
-    context_object_name = "ticket_detail_update"
 
     def get_success_url(self):
         return reverse_lazy("Tickets:all")
