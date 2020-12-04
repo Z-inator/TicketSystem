@@ -6,7 +6,7 @@
         <div class="content">
             <h3>Ticket Details</h3>
         </div>
-        <a href="{% url 'Tickets:update' pk=ticket_detail.pk %}" class="mdc-fab mdc-fab--extended" role="button">
+        <a href="{% url 'Tickets:update' pk=ticket.pk %}" class="mdc-fab mdc-fab--extended" role="button">
             <div class="mdc-fab__ripple"></div>
             <span class="material-icons mdc-fab__icon">edit</span>
             <span class="mdc-fab__label">Edit</span>
@@ -16,7 +16,7 @@
 
 {% block ticket_content %}
     <table class="table table-hover my-4">
-        {% for field in ticket_detail.get_fields %}
+        {% for field in ticket.get_fields %}
             <tr>
                 <th>{{ field.label }}</th>
                 <td>{{ field.value }}</td>
