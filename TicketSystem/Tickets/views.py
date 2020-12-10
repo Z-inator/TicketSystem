@@ -3,9 +3,10 @@ from django.http import Http404
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
-from . import forms
-from . import models
+from .forms import TicketForm
+from .models import Ticket
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -14,12 +15,12 @@ User = get_user_model()
 # Create your views here.
 
 class Dashboard(LoginRequiredMixin, generic.ListView):
-    model = models.Ticket
+    model = Ticket
     template_name = "Tickets/ticket_dashboard.html"
 
 class CreateTicket(LoginRequiredMixin, generic.CreateView):
     # Use this for more complicated forms: explicit call
-    form_class = forms.TicketForm
+    form_class = TicketForm
     # Use this for basic forms: Django automatically created model form from model
     # model = models.Ticket
     # fields = ("title", "description", "highPriority")
@@ -32,16 +33,16 @@ class CreateTicket(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
 class TicketList(LoginRequiredMixin, generic.ListView):
-    model = models.Ticket
+    model = Ticket
     template_name = "Tickets/ticket_list.html"
 
     def get_queryset(self):
-        user_tickets = User.objects.filter(username__iexact=self.user.username)
-        return user_tickets
+        self.user.username = get_object_or_404(Ticket, user=self.kwargs['user'])
+        return Ticket.objects.filter(user=self.user)
 
     def get_context_data(self):
         context = super().get_context_data(**kwargs)
-        context["Ticket_user"] = user_tickets
+        context["user"] = self.user
         return context
 
     # def get_queryset(self):
@@ -73,11 +74,11 @@ class TicketList(LoginRequiredMixin, generic.ListView):
     #     return context
 
 class TicketDetail(LoginRequiredMixin, generic.DetailView):
-    model = models.Ticket
+    model = Ticket
     template_name = "Tickets/ticket_detail.html"
 
 class TicketUpdate(LoginRequiredMixin, generic.UpdateView):
-    model = models.Ticket
+    model = Ticket
     fields = ["title","description","highPriority"]
     template_name = "Tickets/ticket_update.html"
 
@@ -85,5 +86,5 @@ class TicketUpdate(LoginRequiredMixin, generic.UpdateView):
         return reverse_lazy("Tickets:all")
 
 class TicketDelete(LoginRequiredMixin, generic.DeleteView):
-    model = models.Ticket
+    model = Ticket
     success_url = reverse_lazy("Tickets:all")
