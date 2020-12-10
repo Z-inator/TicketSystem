@@ -27,6 +27,7 @@ class Ticket(models.Model):
             "Tickets:single", 
             kwargs={
                 "pk":self.pk,
+                "user":self.user,
                 "username":self.user.username
             }
         )
